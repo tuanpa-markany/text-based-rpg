@@ -1,6 +1,18 @@
 import React from 'react';
 
-const abilities = {
+interface Ability {
+  name: string;
+  passive: boolean;
+}
+
+interface AbilityOverlayProps {
+  selectedClass: string;
+  onClose: () => void;
+  abilityLevels: Record<string, number>;
+  onUpgrade: (ability: string) => void;
+}
+
+const abilities: Record<string, Ability[]> = {
   general: [
     { name: 'Health', passive: false },
     { name: 'Strength', passive: false },
@@ -23,7 +35,7 @@ const abilities = {
   ],
 };
 
-const descriptions = {
+const descriptions: Record<string, string> = {
   Health: 'Extra health points',
   Strength: 'Extra attack',
   Pickpocketing: 'Increases success chance of pickpocket attempt',
@@ -38,8 +50,7 @@ const descriptions = {
   Backstab: 'Guarantees first turn and +50% dmg on first attack if rogue initiates combat while invisible',
 };
 
-
-const AbilityOverlay = ({ selectedClass, onClose, abilityLevels, onUpgrade }) => {
+const AbilityOverlay: React.FC<AbilityOverlayProps> = ({ selectedClass, onClose, abilityLevels, onUpgrade }) => {
   const classAbilities = abilities[selectedClass];
 
   return (

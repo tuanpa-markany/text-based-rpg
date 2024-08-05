@@ -4,19 +4,18 @@ import { useState } from 'react';
 import AbilityOverlay from '../components/ability-overlay';
 
 
-const initialAbilityLevels = {
+const initialAbilityLevels: Record<string, number> = {
   Health: 0, Strength: 0, Pickpocketing: 0,
   'Berserker Rage': 0, Taunt: 0, 'Damage Reduction': 1,
   Illusion: 0, Blink: 0, Presence: 1,
   Evade: 0, Vanish: 0, Backstab: 1,
 };
-;
 
 export default function Home() {
-  const [level, setLevel] = useState(1);
-  const [points, setPoints] = useState(0);
-  const [selectedClass, setSelectedClass] = useState(null);
-  const [abilityLevels, setAbilityLevels] = useState(initialAbilityLevels);
+  const [level, setLevel] = useState<number>(1);
+  const [points, setPoints] = useState<number>(0);
+  const [selectedClass, setSelectedClass] = useState<string | null>(null);
+  const [abilityLevels, setAbilityLevels] = useState<Record<string, number>>(initialAbilityLevels);
 
   const handleLevelUp = () => {
     setLevel(prevLevel => {
@@ -27,7 +26,7 @@ export default function Home() {
     });
   };
 
-  const handleClassSelect = (className) => {
+  const handleClassSelect = (className: string) => {
     setSelectedClass(className);
   };
 
@@ -35,7 +34,7 @@ export default function Home() {
     setSelectedClass(null);
   };
 
-  const handleUpgradeAbility = (ability) => {
+  const handleUpgradeAbility = (ability: string) => {
     if (points > 0 && (!abilityLevels[ability] || abilityLevels[ability] < 3)) {
       setAbilityLevels(prevLevels => ({
         ...prevLevels,
