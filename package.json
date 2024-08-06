@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx dev birazze"
+    "start": "npx nx dev bizarre",
+    "build": "npx nx build bizarre"
   },
   "private": true,
   "dependencies": {
